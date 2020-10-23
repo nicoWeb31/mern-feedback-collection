@@ -2,12 +2,12 @@ const  express = require('express');
 
 const app = express();
 
-// app.use('/',(req,res)=>{
-//     console.log('server run well.....')
+app.use('/toto',(req,res)=>{
+    console.log('server run well.....')
 
-//     res.status(200).json({message: 'server run wel'})
+    res.status(200).json({message: 'server run wel'})
 
-// })
+})
 
 app.get('/',(req,res)=>{
     res.send({hi: 'there'})

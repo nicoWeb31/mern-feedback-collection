@@ -1,1 +1,6 @@
 GET  http://localhost:5002 
+
+###
+
+//heroku server
+GET https://cryptic-inlet-39368.herokuapp.com/
