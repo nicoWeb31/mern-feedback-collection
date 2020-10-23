@@ -17,8 +17,9 @@ app.get('/',(req,res)=>{
 
 
 
+//for heroku
+const PORT = process.env.PORT || 5002
 
-
-app.listen(5002,()=>{
-    console.log('server run .....')
+app.listen(PORT,()=>{
+    console.log(`server run .....on port ${PORT}....;)`)
 });
