@@ -6,7 +6,8 @@ const app = express();
 
 
 //passport 
-passport.use(new GoogleStrategy)
+//https://console.cloud.google.com/home/dashboard?project=mern-enquete
+passport.use(new GoogleStrategy())
 
 
 //for heroku
