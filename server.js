@@ -11,16 +11,29 @@ const app = express();
 //https://console.cloud.google.com/home/dashboard?project=mern-enquete
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
-    clientSecret: keys.clientSecret,
+    clientSecret: keys.googleClientSecret,
     callbackURL: '/auth/google/callback'
 },
-(accessToken)=>{
+(accessToken, refrexToken, profile , done)=>{
+    //recupe du user    
     console.log(accessToken)
+    console.log(refrexToken)
+    console.log(profile)
+    console.log(done)
+
+    //possibilite de cree un utilisateur en db
+
+
 
 }))
 
+
+//route pour recuperer l'acces token
 app.get('/auth/google',
 passport.authenticate('google',{scope:['profile','email']}))
+
+//route for google callback pour l'accessToken
+app.get('/auth/google/callback',passport.authenticate('google'))
 
 
 
