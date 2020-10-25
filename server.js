@@ -2,6 +2,14 @@ const  express = require('express');
 require('./services/passport')
 const authRoutes = require("./routes/authRoutes")
 const app = express();
+const mongo = require('mongoose');
+
+
+
+//mongoose
+mongo.connect(require('./config/keys').mongooseKey,{ useUnifiedTopology: true,useNewUrlParser: true },()=>{
+    console.log('Connect to mongoose')
+} )
 
 
 //routes
