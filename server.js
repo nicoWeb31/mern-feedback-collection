@@ -1,8 +1,11 @@
 const  express = require('express');
-require('./services/passport')
 const authRoutes = require("./routes/authRoutes")
 const app = express();
 const mongo = require('mongoose');
+
+//order very impotant....instance user in first
+require('./models/User')
+require('./services/passport')
 
 
 
