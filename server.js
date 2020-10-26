@@ -8,8 +8,8 @@ const mongo = require('mongoose');
 
 //mongoose
 mongo.connect(require('./config/keys').mongooseKey,{ useUnifiedTopology: true,useNewUrlParser: true },()=>{
-    console.log('Connect to mongoose')
-} )
+    console.log('Connect to mongoose...:)')
+})
 
 
 //routes
