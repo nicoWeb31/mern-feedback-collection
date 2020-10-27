@@ -21,6 +21,11 @@ mongo.connect(require('./config/keys').mongooseKey,{ useUnifiedTopology: true,us
 
 
 //midelewaire passport session auth
+app.use((req,res,next)=>{
+    console.log('je suis un middleware')
+    next()
+})
+
 app.use(
     cookieSession({
         maxAge: 30 * 24 * 60 *60 *1000,
