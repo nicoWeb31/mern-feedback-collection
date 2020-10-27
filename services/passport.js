@@ -6,6 +6,20 @@ const mongoose = require("mongoose")
 const User = mongoose.model('users')
 
 
+//serialize with passport
+passport.serializeUser((user,done) =>{
+    //user id de mongo
+    done(null,user.id)
+})
+
+
+passport.deserializeUser((id,done)=>{
+    User.findById(id)
+    .then(user =>{
+        done(null,user)
+    })
+})
+
 //passport 
 //https://console.cloud.google.com/home/dashboard?project=mern-enquete
 passport.use(new GoogleStrategy({
@@ -33,9 +47,14 @@ passport.use(new GoogleStrategy({
         console.log("existUser", existUser)
         //user doesn't exist
         if(!existUser){
-            new User({googleId : profile.id}).save();
+            //async
+            new User({googleId : profile.id})
+            .save()
+            .then(user => done(null, user))
         }else{
-            console.log("existUser true", existUser)
+            console.log("existUser true", existUser);
+
+            done(null, existUser)
         }
 
     })
