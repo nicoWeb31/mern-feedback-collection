@@ -12,5 +12,7 @@ module.exports = (app) =>{
     //route for google callback pour l'accessToken
     app.get('/auth/google/callback',authControlller.authGoogleCallback)
 
+    app.get('/api/current_user',authControlller.currentUser)
+
 
 }

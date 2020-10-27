@@ -9,3 +9,7 @@ GET https://cryptic-inlet-39368.herokuapp.com/
 
 //heroku server
 GET https://cryptic-inlet-39368.herokuapp.com/toto
+
+###
+
+GET  http://localhost:5002/api/current_user
