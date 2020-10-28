@@ -22,7 +22,7 @@ mongo.connect(require('./config/keys').mongooseKey,{ useUnifiedTopology: true,us
 
 //midelewaire passport session auth
 app.use((req,res,next)=>{
-    console.log('je suis un middleware')
+    console.log('je suis un middleware en ', process.env.NODE_ENV )
     next()
 })
 
