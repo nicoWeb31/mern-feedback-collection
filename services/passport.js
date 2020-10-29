@@ -50,13 +50,9 @@ passport.use(new GoogleStrategy({
         //user doesn't exist
         if (!existUser) {
             //async
-            await new User({ googleId: profile.id })
-                .save()
-                .then(user => done(null, user))
-        } else {
-            console.log("existUser true", existUser);
-
-            done(null, existUser)
+            const user = await new User({ googleId: profile.id }).save();
+            return done(null, user);
         }
-
+        console.log("existUser true", existUser);
+        done(null, existUser)
     }))
