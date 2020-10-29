@@ -7,17 +7,17 @@ const User = mongoose.model('users')
 
 
 //serialize with passport
-passport.serializeUser((user,done) =>{
+passport.serializeUser((user, done) => {
     //user id de mongo
-    done(null,user.id)
+    done(null, user.id)
 })
 
 
-passport.deserializeUser((id,done)=>{
+passport.deserializeUser((id, done) => {
     User.findById(id)
-    .then(user =>{
-        done(null,user)
-    })
+        .then(user => {
+            done(null, user)
+        })
 })
 
 //passport 
@@ -26,42 +26,37 @@ passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
     callbackURL: '/auth/google/callback',
-    proxy:true     //refative adress 
+    proxy: true     //refative adress 
 },
-(accessToken, refrexToken, profile , done)=>{
-    //recupe du user    
-    // console.log("accessToken", accessToken)
-    // console.log("done", done)
-    // console.log("profile", profile)
-    // console.log("refrexToken", refrexToken)
-    
+    async (accessToken, refrexToken, profile, done) => {
+        //recupe du user    
+        // console.log("accessToken", accessToken)
+        // console.log("done", done)
+        // console.log("profile", profile)
+        // console.log("refrexToken", refrexToken)
 
-    //possibilite de cree un utilisateur en db
 
-    
-    //new instance of user
-    //persiste in bdd
-    //if user exist
-    //findOne return a promise
-    User.findOne({googleId: profile.id}).then(existUser =>{
-        
+        //possibilite de cree un utilisateur en db
+
+
+        //new instance of user
+        //persiste in bdd
+        //if user exist
+        //findOne return a promise
+        const existUser = await User.findOne({ googleId: profile.id })
+
+
         console.log("existUser", existUser)
         //user doesn't exist
-        if(!existUser){
+        if (!existUser) {
             //async
-            new User({googleId : profile.id})
-            .save()
-            .then(user => done(null, user))
-        }else{
+            await new User({ googleId: profile.id })
+                .save()
+                .then(user => done(null, user))
+        } else {
             console.log("existUser true", existUser);
 
             done(null, existUser)
         }
 
-    })
-
-    
-
-
-
-}))
+    }))
