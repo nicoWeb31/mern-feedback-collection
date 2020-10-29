@@ -3,7 +3,10 @@ import ReactDom from 'react-dom';
 
 import {Provider} from 'react-redux';
 import { createStore, applyMiddleware} from 'redux';
-import reducers from './reducers'
+import reducers from './reducers';
+
+//materialize import CSS
+import 'materialize-css/dist/css/materialize.min.css'
 
 
 import App from './component/App';
