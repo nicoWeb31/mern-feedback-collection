@@ -19,7 +19,8 @@ console.log("exports.currentUser -> req", req.user)
 exports.authLogout = (req, res) =>{
     //log automaticat attache by passport
     req.logout()
-    res.json({'message':'user destroye logout ok'})
+    res.redirect('/')
+    
     
 }
 

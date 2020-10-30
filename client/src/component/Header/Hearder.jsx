@@ -24,7 +24,7 @@ class Hearder extends Component {
             default:
                 return (
                     <li>
-                        <a href="/logout">logout</a>
+                        <a href="/api/logout">logout</a>
                     </li>
                 )
         }
