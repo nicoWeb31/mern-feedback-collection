@@ -1,11 +1,13 @@
 const passport = require('passport');
 
-
+//
 exports.getAuthGoogle = passport.authenticate('google',{scope:['profile','email']});
 
+//
+exports.authGoogleCallback = passport.authenticate('google');
 
-exports.authGoogleCallback = passport.authenticate('google')
 
+//
 exports.currentUser = (req, res) =>{
 console.log("exports.currentUser -> req", req.user)
 
@@ -13,7 +15,7 @@ console.log("exports.currentUser -> req", req.user)
 
 }
 
-
+//
 exports.authLogout = (req, res) =>{
     //log automaticat attache by passport
     req.logout()

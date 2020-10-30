@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Link, Router } from 'react-router-dom'
+import { Link, Router } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 
 class Hearder extends Component {
@@ -7,29 +9,52 @@ class Hearder extends Component {
         super(props);
         this.state = {};
     }
+
+    renderContent() {
+        switch (this.props.isAuth) {
+            case null:
+                return
+            case false:
+                return (
+                    <li>
+                        <a href="auth/google">Login with Google</a>
+                    </li>
+                )
+
+            default:
+                return (
+                    <li>
+                        <a href="/logout">logout</a>
+                    </li>
+                )
+        }
+    }
+
+
     render() {
+        console.log(this.props.isAuth)
         return (
-            
-                <nav >
-                    <div className="nav-wrapper">
-                        
-                        <a href="true" className="left brand-logo">€maily</a>
-                    
+
+            <nav >
+                <div className="nav-wrapper">
+
+                    <a href="true" className="left brand-logo">€maily</a>
+
                     <ul className="right">
-                        <li>
-                            <a href="true">Login with Google</a>
-                        </li>
+
+                        {this.renderContent()}
 
                     </ul>
 
-                    </div>
-                </nav>
+                </div>
+            </nav>
 
 
 
-            
+
         );
     }
 }
 
-export default Hearder;
+const mapStateToProps = state => ({ isAuth: state.authR })
+export default connect(mapStateToProps)(Hearder);

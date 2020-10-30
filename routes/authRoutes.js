@@ -10,7 +10,8 @@ module.exports = (app) =>{
     app.get('/auth/google',authController.getAuthGoogle)
     
     //route for google callback pour l'accessToken
-    app.get('/auth/google/callback',authController.authGoogleCallback)
+    app.get('/auth/google/callback',authController.authGoogleCallback,(req,res)=>{
+        res.redirect('/surveys')})
     
     app.get('/api/logout',authController.authLogout)
 
