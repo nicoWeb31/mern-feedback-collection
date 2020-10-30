@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Payments from '../../component/Payments'
 
 
 
@@ -22,11 +23,10 @@ class Hearder extends Component {
                 )
 
             default:
-                return (
-                    <li>
-                        <a href="/api/logout">logout</a>
-                    </li>
-                )
+                return [<li key="2"><Payments/></li>,
+                <li key="1"><a href="/api/logout">logout</a></li>
+                ]
+
         }
     }
 
@@ -39,9 +39,9 @@ class Hearder extends Component {
             <nav >
                 <div className="nav-wrapper">
 
-                    <Link  to={this.props.isAuth ? '/surveys' : '/'}
-                    
-                    className="left brand-logo">€maily</Link>
+                    <Link to={this.props.isAuth ? '/surveys' : '/'}
+
+                        className="left brand-logo">€maily</Link>
 
                     <ul className="right">
 

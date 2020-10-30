@@ -22,3 +22,7 @@ ReactDom.render(
 
     document.querySelector('#root')
 );
+
+console.log('Stripe from env variable : ',process.env.REACT_APP_STRIPE_KEY)
+console.log('Environement is : ',process.env.NODE_ENV);
+
