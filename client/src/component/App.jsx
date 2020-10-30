@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './Header/Hearder';
 import { connect } from 'react-redux';
-import {fetchUser} from '../actions';
+import { fetchUser } from '../actions';
 
 import Landing from '../component/landing/Landing'
 
@@ -13,36 +13,36 @@ const SureveilNew = () => <h2>SureveilNew</h2>;
 
 
 class App extends Component {
-    state = {  }
+    state = {}
 
-    componentDidMount(){
+    componentDidMount() {
         console.log(this.props)
         this.props.fetchUser();
     }
 
     render() {
         return (
-            <div>
-
-
-            <Header/>
-
             <BrowserRouter>
-                <div className="container">
+                <div>
 
-                    <Route exact path='/serveys' component={DashBord}/>
-                    <Route path='/serveys/new' component={SureveilNew}/>
 
-                    <Route  exact path='/' component={Landing}/>
+                    <Header />
+
+                    <div className="container">
+
+                        <Route exact path='/surveys' component={DashBord} />
+                        <Route path='/serveys/new' component={SureveilNew} />
+
+                        <Route exact path='/' component={Landing} />
+                    </div>
+
                 </div>
-
             </BrowserRouter>
-        </div>
         );
     }
 }
 
-export default connect(null,{fetchUser})(App);
+export default connect(null, { fetchUser })(App);
 
 
 

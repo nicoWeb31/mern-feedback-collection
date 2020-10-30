@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
@@ -35,10 +35,13 @@ class Hearder extends Component {
         console.log(this.props.isAuth)
         return (
 
+
             <nav >
                 <div className="nav-wrapper">
 
-                    <a href="true" className="left brand-logo">€maily</a>
+                    <Link  to={this.props.isAuth ? '/surveys' : '/'}
+                    
+                    className="left brand-logo">€maily</Link>
 
                     <ul className="right">
 
@@ -48,8 +51,6 @@ class Hearder extends Component {
 
                 </div>
             </nav>
-
-
 
 
         );
