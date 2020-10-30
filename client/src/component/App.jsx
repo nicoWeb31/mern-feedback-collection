@@ -18,7 +18,7 @@ const App = () => {
             <Header/>
 
             <BrowserRouter>
-                <div>
+                <div className="container">
 
                     <Route path='/' component={DashBord}/>
                     <Route exact path='/serveys' component={DashBord}/>
