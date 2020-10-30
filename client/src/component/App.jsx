@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react'
+
 import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './Header/Hearder';
-
-
+import { connect } from 'react-redux';
+import {fetchUser} from '../actions'
 
 const DashBord = () => <h2>DashBord</h2>;
 const SureveilNew = () => <h2>SureveilNew</h2>;
 const Landing = () => <h2>Landing</h2>;
 
 
+class App extends Component {
+    state = {  }
 
-const App = () => {
-    return (
-        <div>
+    componentDidMount(){
+        console.log(this.props)
+        this.props.fetchUser();
+    }
+
+    render() {
+        return (
+            <div>
 
 
             <Header/>
@@ -29,17 +37,11 @@ const App = () => {
 
             </BrowserRouter>
         </div>
-    );
+        );
+    }
 }
 
-export default App;
-
-
-
-
-
-
-
+export default connect(null,{fetchUser})(App);
 
 
 
