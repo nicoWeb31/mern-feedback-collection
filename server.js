@@ -23,7 +23,8 @@ mongo.connect(require('./config/keys').mongooseKey,{ useUnifiedTopology: true,us
     console.log('Connect to mongoose...:)')
 })
 
-
+//parser
+app.use(express.json());
 //midelewaire passport session auth
 app.use((req,res,next)=>{
     console.log('je suis un middleware en ', process.env.NODE_ENV )
