@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Payments from '../../component/Payments'
+import Payments from '../../component/Payments';
+
+import './header.style.css'
 
 
 
@@ -24,6 +26,7 @@ class Hearder extends Component {
 
             default:
                 return [<li key="2"><Payments/></li>,
+                <li key="3" className="_liCredit"> credits : {this.props.isAuth.credits}</li>,
                 <li key="1"><a href="/api/logout">logout</a></li>
                 ]
 
