@@ -1,5 +1,9 @@
 const  express = require('express');
+
+//route
 const authRoutes = require("./routes/authRoutes")
+const billingRoute= require('./routes/billingRoute')
+
 const app = express();
 const mongo = require('mongoose');
 
@@ -38,6 +42,7 @@ app.use(passport.session())
 
 //routes
 authRoutes(app);
+billingRoute(app);
 //or
 //require("./routes/authRoutes")(app);
 
