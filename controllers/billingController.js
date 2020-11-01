@@ -20,6 +20,6 @@ exports.stripeBilling = async(req,res)=>{
             console.log('user after billing :',req.user)
             res.send(user)
         }catch(err){
-            res.status(401).send({error: 'you must log in !'})
+            res.status(401).send({error: 'error !'})
         }
 }
