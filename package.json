@@ -11,7 +11,8 @@
     "devServer": "nodemon server.js",
     "start": "node server.js",
     "client": "npm run start --prefix client",
-    "devAllServer": "concurrently \"npm run devServer\" \"npm run client\""
+    "devAllServer": "concurrently \"npm run devServer\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
