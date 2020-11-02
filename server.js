@@ -12,7 +12,9 @@ const cookieSession = require('cookie-session')
 const keys = require('./config/keys')
 
 //order very impotant....instance user in first
+//models
 require('./models/User')
+require('./models/sureveys')
 
 //service passport
 require('./services/passport')
