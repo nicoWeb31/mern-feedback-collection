@@ -46,6 +46,7 @@ app.use(passport.session())
 //routes
 authRoutes(app);
 billingRoute(app);
+require('./routes/serveysRoutes')(app);
 //or
 //require("./routes/authRoutes")(app);
 

@@ -20,8 +20,9 @@ const surveysSchema = new Schema({
         type: Number,
         default: 0  
     },
-    _user: {type: Schema.Types.ObjectId, ref: 'User'} ///reference a l'utilisateur colklection des users
-
+    _user: {type: Schema.Types.ObjectId, ref: 'User'}, ///reference a l'utilisateur colklection des users
+    dateSent: Date,
+    lastResponded: Date
 })
 
 
