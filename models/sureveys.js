@@ -1,5 +1,7 @@
-import moongose from "mongoose";
+const  moongose = require('mongoose');
 const { Schema } = moongose;
+
+const RecipientShema = require('./recipients')
 
 
 const surveysSchema = new Schema({
@@ -9,7 +11,17 @@ const surveysSchema = new Schema({
     },
     body: String,
     subject: String,
-    recipients: [String]   ///un array de string
+    recipients: [RecipientShema],   ///un array de subDocument
+    yes: {
+        type: Number,
+        default: 0
+    },
+    no: {
+        type: Number,
+        default: 0  
+    },
+    _user: {type: Schema.Types.ObjectId, ref: 'User'} ///reference a l'utilisateur colklection des users
+
 })
 
 
