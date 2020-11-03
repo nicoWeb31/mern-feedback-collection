@@ -7,5 +7,5 @@ import { reducer as formReducer } from 'redux-form';
 
 export default combineReducers({
     authR: authReducer,
-    formR: formReducer
+    form: formReducer       //form name obligation 
 })
