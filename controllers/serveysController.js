@@ -6,21 +6,43 @@ const Servey = mongoose.model('surveys');
 
 
 //create a serveys and send a big email
-exports.postServey = (req,res)=>{
+exports.postServey = async (req, res) => {
 
-    const {title,body,subject,recipients} = req.body;
+    const { title, body, subject, recipients } = req.body;
     const newServey = new Servey({
         title,
         body,
         subject,
-        recipients: recipients.split(',').map(email=>({email:email.trim()})), //map(email=>{return {email: email}}) trim suppr space
+        recipients: recipients.split(',').map(email => ({ email: email.trim() })), //map(email=>{return {email: email}}) trim suppr space
         _user: req.user._id,
         sentDate: Date.now()  //methode de mongoose
     })
 
     //great place to send an email!
-    const mailer = new Mailer(newServey,template(newServey));
-    mailer.send();
+    const mailer = new Mailer(newServey, template(newServey));
+
+
+    try {
+
+        await mailer.send();
+
+        //save in mongo
+        await newServey.save();
+
+        //deconte des credit
+        req.user.credits -= 1;
+
+        //save in mongo modif user
+        const user = await req.user.save();
+
+        //he new valuee in credit !! user maj!
+        res.send(user);
+
+    } catch (err) {
+        res.status(422).send(err)
+    }
+
+
 
 
 

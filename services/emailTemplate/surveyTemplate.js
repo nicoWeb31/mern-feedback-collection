@@ -1,3 +1,5 @@
+const keys = require('../../config/keys').domain;
+
 module.exports =(survey)=>{
 
     return `
@@ -9,10 +11,10 @@ module.exports =(survey)=>{
             <p>Please answer the following question</p>
             <p>${survey.body}</p>
             <div>
-                <a href="http://localhost:5002">yes</a>
+                <a href="${keys}">yes</a>
             </div>
             <div>
-                <a href="http://localhost:5002">no</a>
+                <a href="${keys}">no</a>
             </div>
     
             </div>
