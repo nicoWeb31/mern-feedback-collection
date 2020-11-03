@@ -5,12 +5,15 @@ import {Provider} from 'react-redux';
 import { createStore, applyMiddleware} from 'redux';
 import reducers from './reducers';
 import reduxThunk from 'redux-thunk';
+import App from './component/App';
 
 //materialize import CSS
-import 'materialize-css/dist/css/materialize.min.css'
+import 'materialize-css/dist/css/materialize.min.css';
 
+//test post survey and send mails
+import axios from 'axios';
+window.axios = axios;
 
-import App from './component/App';
 
 //creation du store
 const store = createStore(reducers,{},applyMiddleware(reduxThunk))

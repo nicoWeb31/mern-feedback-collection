@@ -20,7 +20,8 @@ exports.postServey = (req,res)=>{
 
     //great place to send an email!
     const mailer = new Mailer(newServey,template(newServey));
+    mailer.send();
 
-    
+
 
 }
