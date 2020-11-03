@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Mailer = require('../services/Mailer');
+const template = require('../services/emailTemplate/surveyTemplate')
 
 const Servey = mongoose.model('surveys');
 
@@ -15,5 +17,10 @@ exports.postServey = (req,res)=>{
         _user: req.user._id,
         sentDate: Date.now()  //methode de mongoose
     })
+
+    //great place to send an email!
+    const mailer = new Mailer(newServey,template(newServey));
+
+    
 
 }
