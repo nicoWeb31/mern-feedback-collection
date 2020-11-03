@@ -4,10 +4,11 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './Header/Hearder';
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
+import Dashboard from './dashbaord/Dashboard'
 
 import Landing from '../component/landing/Landing'
 
-const DashBord = () => <h2>DashBord</h2>;
+
 const SureveilNew = () => <h2>SureveilNew</h2>;
 
 
@@ -30,7 +31,7 @@ class App extends Component {
 
                     <div className="container">
 
-                        <Route exact path='/surveys' component={DashBord} />
+                        <Route exact path='/surveys' component={Dashboard} />
                         <Route path='/serveys/new' component={SureveilNew} />
 
                         <Route exact path='/' component={Landing} />

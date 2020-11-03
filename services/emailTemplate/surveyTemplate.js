@@ -11,10 +11,10 @@ module.exports =(survey)=>{
             <p>Please answer the following question</p>
             <p>${survey.body}</p>
             <div>
-                <a href="${keys}">yes</a>
+                <a href="${keys}/api/surveys/thanks">yes</a>
             </div>
             <div>
-                <a href="${keys}">no</a>
+                <a href="${keys}/api/surveys/thanks">no</a>
             </div>
     
             </div>

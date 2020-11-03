@@ -5,6 +5,14 @@ const template = require('../services/emailTemplate/surveyTemplate')
 const Servey = mongoose.model('surveys');
 
 
+//getredirect mail thanks for voting
+exports.thankForVoting = (req,res)=>{
+    res.send('Thanks for voting !!!!')
+}
+
+
+
+
 //create a serveys and send a big email
 exports.postServey = async (req, res) => {
 
