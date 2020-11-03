@@ -6,10 +6,8 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
 import Dashboard from './dashbaord/Dashboard'
 
-import Landing from '../component/landing/Landing'
-
-
-const SureveilNew = () => <h2>SureveilNew</h2>;
+import Landing from '../component/landing/Landing';
+import SurveysNews from '../component/surveys/SurveysNews'
 
 
 
@@ -32,7 +30,7 @@ class App extends Component {
                     <div className="container">
 
                         <Route exact path='/surveys' component={Dashboard} />
-                        <Route path='/serveys/new' component={SureveilNew} />
+                        <Route path='/serveys/new' component={SurveysNews} />
 
                         <Route exact path='/' component={Landing} />
                     </div>
