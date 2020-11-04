@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form';
 import SurveysField from './SurveysField';
 import _ from 'lodash';
+import { Link } from 'react-router-dom'
 
 
 //refacto pour ne pas repeter les fieds :
@@ -78,7 +79,15 @@ class SurveysForm extends Component {
                 <form onSubmit={handleSubmit(values => console.log(values))}>
 
                     {this.renderField()}
-                    <button type='submit'>submit</button>
+
+                    <Link to='/surveys' className="red btn-flat white-text">
+                        Cancel
+                    </Link>
+                    <button type='submit' className="teal btn-flat right white-text">
+                    Next
+                    <i className="material-icons right">done</i>
+                    </button>
+                    
                 </form>
 
             </div>
@@ -87,8 +96,17 @@ class SurveysForm extends Component {
     }
 }
 
+const validateF = (values) =>{
+    const errors = {};
+
+    if(!values.title) errors.title = 'You must provide a title';
+
+    return errors;
+}
+
 
 const surveysForm = reduxForm({
+    validate: validateF,
     // a unique name for the form
     form: 'formSurveys'
 })(SurveysForm)
