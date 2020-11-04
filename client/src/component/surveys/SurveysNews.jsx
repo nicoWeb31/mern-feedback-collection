@@ -6,14 +6,38 @@
 import React, { Component } from 'react';
 
 import SurveysForm from './SurveysForm';
+import SurveysFormReview from './SurveysFormReview';
 
-class SurveysNews extends Component{
-    render(){
-        return(
+
+class SurveysNews extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showFormReview : false
+        };
+    }
+
+    onSubmitCancel =()=>{
+        this.setState({showFormReview: false})
+    }
+
+    onSurveySubmit=()=>{
+        this.setState({showFormReview: true})
+    }
+
+    render() {
+        return (
             <div>
-                <SurveysForm/>
+                {
+                    this.state.showFormReview ? (
+                        <SurveysFormReview onCancel={this.onSubmitCancel}/>
+                    ):
+                    (
+                        <SurveysForm onSurveySubmit={this.onSurveySubmit}/>
+                    )
+                }
             </div>
-        )
+        );
     }
 }
 

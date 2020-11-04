@@ -1,8 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */ //trim supprime espace
 //trie des email invalide
-//filter use emailregex.com
+//filter use emailregex.com use html here
 //The test() method executes a search for a match between a regular expression and a specified string. Returns true or false.
-const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const re = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 export default (emails) => {
     const invalidEmailArray = emails.split(',')

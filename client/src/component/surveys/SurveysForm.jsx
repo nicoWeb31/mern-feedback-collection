@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import validateEmail from '../../utils/validateEmail';
 
 
+
 //refacto pour ne pas repeter les fieds :
 const FIELDS = [
     { label: 'Surveys title', name: 'title' },
@@ -71,13 +72,14 @@ class SurveysForm extends Component {
     }
 
 
+
     render() {
         //this.props.handleSubmit provient de reduxForm
-        const { handleSubmit } = this.props
+        //const { handleSubmit } = this.props
 
         return (
             <div>
-                <form onSubmit={handleSubmit(values => console.log(values))}>
+                <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
 
                     {this.renderField()}
 
