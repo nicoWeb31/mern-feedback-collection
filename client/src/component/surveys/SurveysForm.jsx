@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form';
 import SurveysField from './SurveysField';
 import _ from 'lodash';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import validateEmail from '../../utils/validateEmail';
 
 
 //refacto pour ne pas repeter les fieds :
@@ -25,7 +26,7 @@ class SurveysForm extends Component {
     renderField() {
 
         //refacto avec lodash:
-        return _.map(FIELDS,field => {
+        return _.map(FIELDS, field => {
             return <Field
                 type='text'
                 name={field.name}
@@ -84,10 +85,10 @@ class SurveysForm extends Component {
                         Cancel
                     </Link>
                     <button type='submit' className="teal btn-flat right white-text">
-                    Next
+                        Next
                     <i className="material-icons right">done</i>
                     </button>
-                    
+
                 </form>
 
             </div>
@@ -96,10 +97,24 @@ class SurveysForm extends Component {
     }
 }
 
-const validateF = (values) =>{
+const validateF = (values) => {
     const errors = {};
 
-    if(!values.title) errors.title = 'You must provide a title';
+    // if(!values.title) errors.title = 'You must provide a title';
+    // if(!values.subject) errors.subject = 'You must provide a subject';
+    // if(!values.body) errors.body = 'You must provide a body';
+    // if(!values.emails) errors.emails = 'You must provide a emails lists';
+
+    //utils validate email;
+    errors.emails = validateEmail(values.emails || '')
+
+    //refacto with lodash:
+    _.each(FIELDS, ({ name }) => {
+        if (!values[name]) {
+            errors[name] = `You must provide a ${name}`
+        }
+    })
+
 
     return errors;
 }
