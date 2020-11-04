@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux'; //recup values du formulaire
 import formFields from './formFields';
 import _ from 'lodash';
-import { submitSurvey } from '../../actions/index'
+import { submitSurvey } from '../../actions/index';
 
+//routing access to history
+import { withRouter} from 'react-router-dom'
 
-const SurveysFormReview = ({ onCancel, formValues,submitSurvey }) => {
+const SurveysFormReview = ({ onCancel, formValues,submitSurvey, history }) => {
 
 
     const rewiewsFields = _.map(formFields, field => {
@@ -43,7 +45,7 @@ const SurveysFormReview = ({ onCancel, formValues,submitSurvey }) => {
                 BACK
             </button>
             <button className="green btn-flat right"
-            onClick={()=>submitSurvey(formValues)}
+            onClick={()=>submitSurvey(formValues,history)}
             >
                 Send Survey
                 <i className="material-icons right">email</i>
@@ -58,4 +60,4 @@ const mapStateTopProps = state => {
         formValues: state.form.formSurveys.values   //form, noms du formulaire, values le tout dans le reducer
     }
 }
-export default connect(mapStateTopProps,{submitSurvey})(SurveysFormReview);
+export default connect(mapStateTopProps,{submitSurvey})(withRouter(SurveysFormReview));//withrouter
