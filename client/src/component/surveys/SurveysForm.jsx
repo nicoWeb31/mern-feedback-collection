@@ -5,18 +5,17 @@ import SurveysField from './SurveysField';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import validateEmail from '../../utils/validateEmail';
+import formFields from './formFields'
 
 
 
 //refacto pour ne pas repeter les fieds :
-const FIELDS = [
-    { label: 'Surveys title', name: 'title' },
-    { label: 'Subject Line', name: 'subject' },
-    { label: 'Email Body', name: 'body' },
-    { label: 'Emails List', name: 'emails' }
-
-
-]
+// const formFields = [
+//     { label: 'Surveys title', name: 'title' },
+//     { label: 'Subject Line', name: 'subject' },
+//     { label: 'Email Body', name: 'body' },
+//     { label: 'Emails List', name: 'emails' }
+// ]
 
 class SurveysForm extends Component {
     constructor(props) {
@@ -27,7 +26,7 @@ class SurveysForm extends Component {
     renderField() {
 
         //refacto avec lodash:
-        return _.map(FIELDS, field => {
+        return _.map(formFields, field => {
             return <Field
                 type='text'
                 name={field.name}
@@ -62,7 +61,7 @@ class SurveysForm extends Component {
 
         //         <Field
         //             type='text'
-        //             name='emails'
+        //             name='recipients'
         //             component={SurveysField}
         //             label='Emails List'
         //         />
@@ -105,13 +104,13 @@ const validateF = (values) => {
     // if(!values.title) errors.title = 'You must provide a title';
     // if(!values.subject) errors.subject = 'You must provide a subject';
     // if(!values.body) errors.body = 'You must provide a body';
-    // if(!values.emails) errors.emails = 'You must provide a emails lists';
+    // if(!values.recipients) errors.recipients = 'You must provide a emails lists';
 
     //utils validate email;
-    errors.emails = validateEmail(values.emails || '')
+    errors.recipients = validateEmail(values.recipients || '')
 
     //refacto with lodash:
-    _.each(FIELDS, ({ name }) => {
+    _.each(formFields, ({ name }) => {
         if (!values[name]) {
             errors[name] = `You must provide a ${name}`
         }
@@ -124,8 +123,8 @@ const validateF = (values) => {
 
 const surveysForm = reduxForm({
     validate: validateF,
-    // a unique name for the form
-    form: 'formSurveys'
+    form: 'formSurveys',
+    destroyOnUnmount: false  //garder le form en memoire
 })(SurveysForm)
 
 export default surveysForm

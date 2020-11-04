@@ -1,12 +1,10 @@
-//class parent pour formredux -- store implement here
-//formRedux here
-//on entour ici tout ce que l'on a besoin de redux-from, pas besoin de vrapp app.
 //surveysNerw show SurveysForm and SurveysFormRewiew
 
 import React, { Component } from 'react';
 
 import SurveysForm from './SurveysForm';
 import SurveysFormReview from './SurveysFormReview';
+import {reduxForm} from 'redux-form';
 
 
 class SurveysNews extends Component {
@@ -41,4 +39,8 @@ class SurveysNews extends Component {
     }
 }
 
-export default SurveysNews;
+
+//reset le formumaire pas de destroyOnUnmount: false, au demontage ou suprime de form
+export default reduxForm({
+    form: 'formSurveys'
+})(SurveysNews);
