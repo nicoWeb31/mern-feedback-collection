@@ -14,6 +14,17 @@ exports.thankForVoting = (req,res)=>{
 }
 
 
+//getSurveys
+
+exports.fetchAllServey = async (req,res)=>{
+    //recuperation des servey de l'utilisateur courant
+    const surveys = await Servey.find({_user:req.user.id})
+    .select({recipients: false});//custom selcet
+
+    res.send(surveys)
+}
+
+
 
 
 //create a serveys and send a big email

@@ -12,10 +12,18 @@ module.exports = app => {
     
     //user is login ? use middleware
     //check if user have any credrit use midlleware 
+    //cree a new servey
     app.post('/api/surveys', requireLogin,requireCredit, serveysController.postServey)
 
 
+    //recuperer les clicks de sendGrid
+    //lifter les entres et mise en bdd
     app.post('/api/surveys/webHook',serveysController.surveyWebHooks)
+
+    //recuperation pour show les surveys
+    //servey par user
+    //use custum middlware login?
+    app.get('/api/surveys',requireLogin,serveysController.fetchAllServey)
 
 
 
