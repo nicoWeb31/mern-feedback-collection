@@ -84,9 +84,9 @@ exports.surveyWebHooks = (req,res)=>{
     // const uniqEvents = _.uniqBy(compactEvents, 'email', 'surveyId')
     // console.log("uniqEvents", uniqEvents)
 
-    // refaco with chain helper loadash
+    // refaco with chain helper lodash
 
-    const events = _.chain(req.body)
+    _.chain(req.body)
     .map(({email,url}) =>{
         console.log(url)
         const pathName = new URL(url).pathname;
@@ -97,10 +97,23 @@ exports.surveyWebHooks = (req,res)=>{
     })
     .compact()
     .uniqBy('email', 'surveyId')
+    .each(event=>{
+
+            ///-------maj---bdd
+            Servey.updateOne({
+                _id: even.surveyId,
+                recipients:{
+                    $elemMatch: {email:event.email, responded: false}
+                }
+            },{
+                //mongo operator //select propriete //quelle est la value dans choice, imcremente de 1 la valeur de choice(yes or no)
+                $inc: {[even.choice]:1},
+                $set: {'recipients.$.responded':true}//met a jour une valeur danse le sous document $=> subdocument appropier id surveyId
+            }).exec();//exectute la query
+
+    })
     .value();
     
-    console.log("events", events)
-
 
     res.send({})
 }
