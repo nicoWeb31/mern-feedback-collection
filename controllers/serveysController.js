@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Mailer = require('../services/Mailer');
-const template = require('../services/emailTemplate/surveyTemplate')
+const template = require('../services/emailTemplate/surveyTemplate');
+const _ = require('lodash');
+const { Path } = require('path-parser');
+const { url } = require('url')
 
 const Servey = mongoose.model('surveys');
 
@@ -59,7 +62,17 @@ exports.postServey = async (req, res) => {
 //recuperation du yes or no et id survey et traitement 
 
 exports.surveyWebHooks = (req,res)=>{
-    console.log("req", req.body);
-    res.send({})
+
+    const events = _.map(req.body, event =>{
+        const pathName = new URL(event.url).pathname;
+        const p = new Path('/api/surveys/:surveyId/:choice')//return un object ou les cles match avec l'url 
+        //console.log(p.test(pathName))
+        const match = p.test(pathName);
+        if(match){
+            return {eamil: event.email,surveyId: match.surveyId,choice: match.choice};
+        }
+    })
+
+
         
     }

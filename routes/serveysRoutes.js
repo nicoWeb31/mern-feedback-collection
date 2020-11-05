@@ -14,8 +14,8 @@ module.exports = app => {
     //check if user have any credrit use midlleware 
     app.post('/api/surveys', requireLogin,requireCredit, serveysController.postServey)
 
-    
-    app.post('/api/survey/webHook',serveysController.surveyWebHooks)
+
+    app.post('/api/surveys/webHook',serveysController.surveyWebHooks)
 
 
 
