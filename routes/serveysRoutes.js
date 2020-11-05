@@ -7,7 +7,7 @@ const requireCredit = require('../middlewares/requireCredits')
 module.exports = app => {
 
 
-    app.get('/api/surveys/thanks',serveysController.thankForVoting)
+    app.get('/api/surveys/:serveyId/:choice',serveysController.thankForVoting)
 
     
     //user is login ? use middleware

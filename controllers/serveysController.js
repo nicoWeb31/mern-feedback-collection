@@ -101,14 +101,15 @@ exports.surveyWebHooks = (req,res)=>{
 
             ///-------maj---bdd
             Servey.updateOne({
-                _id: even.surveyId,
+                _id: event.surveyId,
                 recipients:{
                     $elemMatch: {email:event.email, responded: false}
                 }
             },{
                 //mongo operator //select propriete //quelle est la value dans choice, imcremente de 1 la valeur de choice(yes or no)
-                $inc: {[even.choice]:1},
-                $set: {'recipients.$.responded':true}//met a jour une valeur danse le sous document $=> subdocument appropier id surveyId
+                $inc: {[event.choice]:1},
+                $set: {'recipients.$.responded':true},//met a jour une valeur danse le sous document $=> subdocument appropier id surveyId
+                lastResponded: new Date()
             }).exec();//exectute la query
 
     })
