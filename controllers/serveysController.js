@@ -55,3 +55,11 @@ exports.postServey = async (req, res) => {
 
 
 }
+
+//recuperation du yes or no et id survey et traitement 
+
+exports.surveyWebHooks = (req,res)=>{
+    console.log("req", req.body);
+    res.send({})
+        
+    }
