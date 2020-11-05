@@ -3,7 +3,7 @@ const Mailer = require('../services/Mailer');
 const template = require('../services/emailTemplate/surveyTemplate');
 const _ = require('lodash');
 const { Path } = require('path-parser');
-const { url } = require('url')
+const { URL } = require('url')
 
 const Servey = mongoose.model('surveys');
 
@@ -62,17 +62,45 @@ exports.postServey = async (req, res) => {
 //recuperation du yes or no et id survey et traitement 
 
 exports.surveyWebHooks = (req,res)=>{
+    const p = new Path('/api/surveys/:surveyId/:choice');//return un object ou les cles match avec l'url 
+    
+    // const events = _.map(req.body, ({email,url}) =>{
+    //     console.log(url)
+    //     const pathName = new URL(url).pathname;
+    //     //console.log(p.test(pathName))
+    //     const match = p.test(pathName);
+    //     // console.log("match", match)
+        
+    //     if(match){
+    //         return {email,surveyId: match.surveyId,choice: match.choice};
+    //     }
+    // })
 
-    const events = _.map(req.body, event =>{
-        const pathName = new URL(event.url).pathname;
-        const p = new Path('/api/surveys/:surveyId/:choice')//return un object ou les cles match avec l'url 
-        //console.log(p.test(pathName))
+    // //remove evrery undefind in my array
+    // const  compactEvents = _.compact(events)
+    // // console.log(compactEvents)
+
+    // //uniq event supprime les doublon
+    // const uniqEvents = _.uniqBy(compactEvents, 'email', 'surveyId')
+    // console.log("uniqEvents", uniqEvents)
+
+    // refaco with chain helper loadash
+
+    const events = _.chain(req.body)
+    .map(({email,url}) =>{
+        console.log(url)
+        const pathName = new URL(url).pathname;
         const match = p.test(pathName);
         if(match){
-            return {eamil: event.email,surveyId: match.surveyId,choice: match.choice};
+            return {email,surveyId: match.surveyId,choice: match.choice};
         }
     })
+    .compact()
+    .uniqBy('email', 'surveyId')
+    .value();
+    
+    console.log("events", events)
 
 
-        
-    }
+    res.send({})
+}
