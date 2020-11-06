@@ -37,7 +37,7 @@ exports.postServey = async (req, res) => {
         subject,
         recipients: recipients.split(',').map(email => ({ email: email.trim() })), //map(email=>{return {email: email}}) trim suppr space
         _user: req.user._id,
-        sentDate: Date.now()  //methode de mongoose
+        sentDate: Date.now  //methode de mongoose
     })
 
     //great place to send an email!
